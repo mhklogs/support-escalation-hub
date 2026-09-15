@@ -17,8 +17,9 @@ interface AppState {
 }
 
 type Action =
-  | { type: 'SET_ONBOARDING_DONE' }
-  | { type: 'SET_TICKETS'; payload: Ticket[] }
+| { type: 'SET_ONBOARDING_DONE' }
+      | { type: 'SET_ONBOARDING'; payload: boolean }
+      | { type: 'SET_TICKETS'; payload: Ticket[] }
   | { type: 'SET_KB_ARTICLES'; payload: KBArticle[] }
   | { type: 'SET_ACTIVE_TICKET'; payload: string | null }
   | { type: 'SET_NAV'; payload: NavTab }
@@ -50,6 +51,8 @@ function reducer(state: AppState, action: Action): AppState {
   switch (action.type) {
     case 'SET_ONBOARDING_DONE':
       return { ...state, isOnboarding: false };
+    case 'SET_ONBOARDING':
+      return { ...state, isOnboarding: action.payload };
     case 'SET_TICKETS':
       return { ...state, tickets: action.payload };
     case 'SET_KB_ARTICLES':
