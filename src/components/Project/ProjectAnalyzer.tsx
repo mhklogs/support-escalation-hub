@@ -62,7 +62,7 @@ import Sidebar from './components/Layout/Sidebar';
 export default function App() {
   return (
     <AppProvider>
-      <div className="flex min-h-screen bg-slate-900 text-white">
+      <div className="flex min-h-screen bg-slate-900 text-ink">
         <Sidebar />
       </div>
     </AppProvider>
@@ -248,14 +248,14 @@ export default function ProjectAnalyzer() {
 
         <div className="z-10 space-y-1.5">
           <div className="flex items-center space-x-2">
-            <span className="flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/10 px-3 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-accent">
+            <span className="flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/10 px-3 py-0.5 font-mono text-[10px] font-bold  tracking-wider text-accent">
               <Sparkles size={11} className="animate-pulse" /> Gemini AI Core
             </span>
             <span className="flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/10 px-3 py-0.5 font-mono text-[10px] font-bold text-accent-soft">
               Autonomous Repair Engine
             </span>
           </div>
-          <h2 className="flex items-center gap-3 bg-gradient-to-r from-ink via-ink to-muted bg-clip-text text-2xl font-black tracking-tight text-transparent">
+          <h2 className="flex items-center gap-3 bg-gradient-to-r from-ink via-ink to-muted bg-clip-text text-2xl font-black leading-tight text-transparent">
             <FolderCode className="shrink-0 text-accent" size={26} />
             {projectName}
           </h2>
@@ -303,12 +303,12 @@ export default function ProjectAnalyzer() {
           className="panel flex h-[380px] flex-col p-4 glow-card-indigo"
         >
           <div className="mb-3 flex items-center justify-between border-b border-line pb-3">
-            <h3 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-ink-soft">
+            <h3 className="flex items-center gap-2 text-xs font-bold  tracking-wider text-ink-soft">
               <Layers size={14} className="text-accent" /> Source Code Files ({files.length})
             </h3>
             <button
               onClick={() => { setFiles(CURRENT_PROJECT_PRESET); setSelectedFile(CURRENT_PROJECT_PRESET[0]); setProjectName('Support Escalation Hub'); }}
-              className="rounded-lg border border-line bg-panel-2 px-2.5 py-1 font-mono text-[10px] text-muted transition-all hover:bg-white/5 hover:text-white"
+              className="rounded-lg border border-line bg-panel-2 px-2.5 py-1 font-mono text-[10px] text-muted transition-all hover:bg-white/5 hover:text-ink"
             >
               Preset Project
             </button>
@@ -349,7 +349,7 @@ export default function ProjectAnalyzer() {
             </div>
             <span className="rounded border border-accent/30 bg-accent/10 px-2 py-0.5 font-mono text-[10px] text-accent">LIVE_SYNTAX_VIEW</span>
           </div>
-          <pre className="flex-1 overflow-auto whitespace-pre-wrap rounded-xl border border-line bg-void/90 p-4 font-mono text-[11px] leading-relaxed text-ink-soft selection:bg-accent/40 selection:text-white">
+          <pre className="flex-1 overflow-auto whitespace-pre-wrap rounded-xl border border-line bg-void/90 p-4 font-mono text-[11px] leading-relaxed text-ink-soft selection:bg-accent/40 selection:text-ink">
             {selectedFile?.content || '// Select a file from the explorer to preview source code...'}
           </pre>
         </motion.div>
@@ -363,7 +363,7 @@ export default function ProjectAnalyzer() {
           className="panel relative z-10 space-y-2 p-4 font-mono text-[11px] glow-card-emerald"
         >
           <div className="mb-2 flex items-center justify-between border-b border-line pb-2 text-muted">
-            <span className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider">
+            <span className="flex items-center gap-2 text-[10px] font-bold  tracking-wider">
               <Terminal size={14} className="text-accent" /> Terminal Execution Log
             </span>
             <span className="rounded-full border border-emerald-400/25 bg-emerald-400/10 px-2.5 py-0.5 text-[9px] font-bold text-emerald-300">
@@ -390,7 +390,7 @@ export default function ProjectAnalyzer() {
             className="relative z-10 space-y-3 rounded-2xl border border-emerald-400/30 bg-panel/90 p-5 shadow-[0_0_40px_rgba(255,138,61,0.12)]"
           >
             <div className="flex items-center justify-between">
-              <h3 className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider text-emerald-300">
+              <h3 className="flex items-center gap-2 text-xs font-extrabold  tracking-wider text-emerald-300">
                 <CheckCircle size={16} /> Backend Terminal Repair Applied
               </h3>
               <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2.5 py-0.5 font-mono text-[10px] font-bold text-emerald-300">
@@ -402,7 +402,7 @@ export default function ProjectAnalyzer() {
             </p>
 
             <div className="space-y-2 pt-1">
-              <span className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-muted">
+              <span className="flex items-center gap-1 text-[10px] font-bold  tracking-wider text-muted">
                 <FileDiff size={12} className="text-accent" /> Applied Code Patches ({fixResult.fixedFiles.length} files)
               </span>
               <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
@@ -450,7 +450,7 @@ export default function ProjectAnalyzer() {
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               <div className="panel space-y-3 p-5 glow-card-indigo md:col-span-2">
-                <h3 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-ink-soft">
+                <h3 className="flex items-center gap-2 text-xs font-bold  tracking-wider text-ink-soft">
                   <Cpu size={15} className="text-accent" /> Architecture Overview
                 </h3>
                 <p className="rounded-xl border border-line bg-void p-4 text-xs leading-relaxed text-ink-soft">
@@ -466,7 +466,7 @@ export default function ProjectAnalyzer() {
               </div>
 
               <div className="panel space-y-3 p-5 glow-card-rose">
-                <h3 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-ink-soft">
+                <h3 className="flex items-center gap-2 text-xs font-bold  tracking-wider text-ink-soft">
                   <ShieldAlert size={15} className={result.securityAudit.severity === 'High' ? 'text-rose-400' : 'text-amber-300'} /> Security Audit
                 </h3>
                 <div className="flex items-center justify-between rounded-xl border border-line bg-void p-3">
@@ -491,7 +491,7 @@ export default function ProjectAnalyzer() {
             </div>
 
             <div className="panel space-y-4 p-5">
-              <h3 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-ink-soft">
+              <h3 className="flex items-center gap-2 text-xs font-bold  tracking-wider text-ink-soft">
                 <AlertTriangle size={15} className="text-rose-400" /> Triage Defect Cards & Quick Repairs
               </h3>
               <div className="grid grid-cols-1 gap-4 md:grid-cols-2">

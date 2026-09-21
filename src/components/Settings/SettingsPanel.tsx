@@ -77,10 +77,10 @@ export default function SettingsPanel() {
   return (
     <div className="w-full max-w-4xl mx-auto space-y-6 p-6">
       <div>
-        <p className="font-head text-xs font-semibold uppercase tracking-[0.24em] text-accent">
+        <p className="font-head text-xs font-semibold  tracking-[0.24em] text-accent">
           integrations
         </p>
-        <h2 className="mt-1 font-display text-2xl uppercase tracking-tight">Settings &amp; connections</h2>
+        <h2 className="mt-1 font-display text-2xl  leading-tight">Settings &amp; connections</h2>
         <p className="mt-1 text-xs text-ink-soft">Configure the external services that power the triage deck</p>
       </div>
 

@@ -51,7 +51,7 @@ export default function Header({ onMenu, menuOpen }: Props) {
       {onMenu && (
         <button
           onClick={onMenu}
-          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-ink-soft transition hover:bg-white/5 hover:text-white lg:hidden"
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-ink-soft transition hover:bg-white/5 hover:text-ink lg:hidden"
           aria-label="Toggle navigation"
         >
           {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -64,7 +64,7 @@ export default function Header({ onMenu, menuOpen }: Props) {
         </span>
         <div className="leading-none">
           <p className="font-display text-sm font-bold tracking-[0.1em] text-ink">SUPPORTOPS</p>
-          <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.24em] text-muted">
+          <p className="mt-1 font-mono text-[10px]  tracking-[0.24em] text-muted">
             escalation hub
           </p>
         </div>

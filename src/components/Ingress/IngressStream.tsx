@@ -41,17 +41,17 @@ export default function IngressStream() {
   return (
     <div className="w-full max-w-6xl mx-auto space-y-6 p-6">
       <div>
-        <p className="font-head text-xs font-semibold uppercase tracking-[0.24em] text-accent">
+        <p className="font-head text-xs font-semibold  tracking-[0.24em] text-accent">
           telemetry pipeline
         </p>
-        <h2 className="mt-1 font-display text-2xl uppercase tracking-tight">Ingress stream</h2>
+        <h2 className="mt-1 font-display text-2xl  leading-tight">Ingress stream</h2>
         <p className="mt-1 text-xs text-ink-soft">Live system telemetry and diagnostic log pipeline</p>
       </div>
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <div className="panel overflow-hidden">
           <div className="flex items-center justify-between border-b border-line px-5 py-3">
-            <h3 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-ink-soft">
+            <h3 className="flex items-center gap-2 text-xs font-semibold  tracking-wider text-ink-soft">
               <Terminal size={14} className="text-accent" />System Telemetry v2.10
             </h3>
             <span className="flex items-center gap-1 rounded border border-emerald-400/25 bg-emerald-400/10 px-2 py-0.5 text-[9px] text-emerald-300">
@@ -69,7 +69,7 @@ export default function IngressStream() {
 
         <div className="panel overflow-hidden">
           <div className="flex items-center justify-between border-b border-line px-5 py-3">
-            <h3 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-ink-soft">
+            <h3 className="flex items-center gap-2 text-xs font-semibold  tracking-wider text-ink-soft">
               <Activity size={14} className="text-accent" />Ticket Log Context
             </h3>
             <span className="font-mono text-[9px] text-muted">{activeTicket ? activeTicket.id : 'NO TICKET'}</span>

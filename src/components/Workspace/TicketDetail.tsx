@@ -37,7 +37,7 @@ export default function TicketDetail() {
                   { Open: 'bg-accent/10 text-accent border-accent/30', Resolved: 'bg-emerald-400/10 text-emerald-300 border-emerald-400/30', Escalated: 'bg-rose-400/10 text-rose-300 border-rose-400/30 font-semibold', 'In Progress': 'bg-sky-400/10 text-sky-300 border-sky-400/30' }[activeTicket.status]
                 }`}>{activeTicket.status}</span>
               </div>
-              <h2 className="pt-1 font-head text-base font-bold tracking-tight text-ink">{activeTicket.subject}</h2>
+              <h2 className="pt-1 font-head text-base font-bold leading-tight text-ink">{activeTicket.subject}</h2>
               <div className="flex flex-wrap gap-x-4 gap-y-1 pt-1 text-xs text-ink-soft">
                 <span className="flex items-center gap-1"><User size={12} />{activeTicket.customerName} ({activeTicket.company})</span>
                 <span className="font-mono text-muted">{activeTicket.customerEmail}</span>
@@ -58,7 +58,7 @@ export default function TicketDetail() {
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           <div className="panel space-y-3 p-5">
-            <h3 className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-ink-soft">
+            <h3 className="flex items-center gap-1.5 text-xs font-semibold  tracking-wider text-ink-soft">
               <User size={14} className="text-accent" />Customer Inquiry
             </h3>
             <div className="whitespace-pre-wrap rounded-lg border border-line bg-void/60 p-4 text-xs leading-relaxed text-ink-soft">
@@ -71,7 +71,7 @@ export default function TicketDetail() {
 
           <div className="panel flex h-[280px] flex-col p-5">
             <div className="mb-3 flex shrink-0 items-center justify-between border-b border-line pb-3">
-              <h3 className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-ink-soft">
+              <h3 className="flex items-center gap-1.5 text-xs font-semibold  tracking-wider text-ink-soft">
                 <Terminal size={14} className="text-accent" />Diagnostic Logs
               </h3>
               <span className="rounded border border-line bg-panel-2 px-2 py-0.5 font-mono text-[9px] text-muted">LOG_STREAM: ACTIVE</span>

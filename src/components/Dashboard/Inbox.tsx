@@ -20,10 +20,10 @@ export default function Inbox() {
   return (
     <div className="w-full max-w-6xl mx-auto space-y-6 p-6">
       <div>
-        <p className="font-head text-xs font-semibold uppercase tracking-[0.24em] text-accent">
+        <p className="font-head text-xs font-semibold  tracking-[0.24em] text-accent">
           command deck
         </p>
-        <h2 className="mt-1 font-display text-2xl uppercase tracking-tight">Queue health</h2>
+        <h2 className="mt-1 font-display text-2xl  leading-tight">Queue health</h2>
         <p className="mt-1 text-xs text-ink-soft">Real-time support queue status and SLA pressure</p>
       </div>
 
@@ -34,7 +34,7 @@ export default function Inbox() {
             <div key={stat.label} className={`panel p-5 transition-all duration-200 hover:-translate-y-0.5 ${stat.color.split(' ')[1]}`}>
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
-                  <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">{stat.label}</p>
+                  <p className="font-mono text-[11px]  tracking-[0.14em] text-muted">{stat.label}</p>
                   <p className="font-display text-3xl text-glow-white">{stat.value}</p>
                 </div>
                 <div className={`rounded-lg p-3 ${stat.color}`}>
@@ -48,7 +48,7 @@ export default function Inbox() {
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <div className="panel p-5">
-          <h3 className="mb-4 flex items-center gap-2 font-head text-xs font-bold uppercase tracking-wider text-ink-soft">
+          <h3 className="mb-4 flex items-center gap-2 font-head text-xs font-bold  tracking-wider text-ink-soft">
             <Activity size={14} className="text-accent" />
             Queue Distribution
           </h3>
@@ -78,7 +78,7 @@ export default function Inbox() {
         </div>
 
         <div className="panel p-5">
-          <h3 className="mb-4 flex items-center gap-2 font-head text-xs font-bold uppercase tracking-wider text-ink-soft">
+          <h3 className="mb-4 flex items-center gap-2 font-head text-xs font-bold  tracking-wider text-ink-soft">
             <Users size={14} className="text-accent" />
             Recent Activity
           </h3>

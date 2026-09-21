@@ -47,12 +47,12 @@ export default function CredentialModal() {
                 </div>
                 <div>
                   <h3 className="font-head text-sm font-semibold text-ink">Credentials Required</h3>
-                  <p className="font-mono text-[10px] uppercase tracking-wider text-muted">Configure service integrations</p>
+                  <p className="font-mono text-[10px]  tracking-wider text-muted">Configure service integrations</p>
                 </div>
               </div>
               <button
                 onClick={() => dispatch({ type: 'SET_CREDENTIAL_MODAL', payload: { open: false, missing: [] } })}
-                className="text-muted transition-colors hover:text-white"
+                className="text-muted transition-colors hover:text-ink"
               >
                 <X size={16} />
               </button>
@@ -65,7 +65,7 @@ export default function CredentialModal() {
 
               {state.missingCredentials.map(key => (
                 <div key={key} className="space-y-1">
-                  <label className="font-head text-xs font-semibold uppercase tracking-wider text-ink-soft block">
+                  <label className="font-head text-xs font-semibold  tracking-wider text-ink-soft block">
                     <Key size={12} className="mr-1 inline text-accent" />
                     {key.replace(/_/g, ' ')}
                   </label>

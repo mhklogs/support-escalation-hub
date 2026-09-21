@@ -38,8 +38,8 @@ export default function Sidebar({ open, onClose }: Props) {
             onClick={() => go(item.id)}
             className={`group flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-xs font-medium transition-all duration-200 ${
               isActive
-                ? 'border border-accent/40 bg-accent/15 text-white shadow-[0_0_20px_-6px_rgba(255,138,61,0.5)]'
-                : 'border border-transparent text-ink-soft hover:bg-white/5 hover:text-white'
+                ? 'border border-accent/40 bg-accent/15 text-ink shadow-[0_0_20px_-6px_rgba(255,138,61,0.5)]'
+                : 'border border-transparent text-ink-soft hover:bg-white/5 hover:text-ink'
             }`}
           >
             <Icon
@@ -53,7 +53,7 @@ export default function Sidebar({ open, onClose }: Props) {
               </span>
             )}
             {item.id === 'inbox' && escalatedCount > 0 && (
-              <span className="ml-auto rounded-full bg-rose-500 px-1.5 py-0.5 text-[9px] font-bold text-white">
+              <span className="ml-auto rounded-full bg-rose-500 px-1.5 py-0.5 text-[9px] font-bold text-ink">
                 {escalatedCount}
               </span>
             )}
@@ -65,7 +65,7 @@ export default function Sidebar({ open, onClose }: Props) {
 
   const footer = (
     <div className="border-t border-line p-4">
-      <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+      <div className="flex items-center gap-2 font-mono text-[10px]  tracking-[0.2em] text-muted">
         <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
         Triage online
       </div>
@@ -82,7 +82,7 @@ export default function Sidebar({ open, onClose }: Props) {
           </span>
           <div className="min-w-0 leading-none">
             <p className="font-display text-sm font-bold tracking-[0.08em] text-ink">SUPPORTOPS</p>
-            <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.24em] text-muted">
+            <p className="mt-1 font-mono text-[10px]  tracking-[0.24em] text-muted">
               escalation hub
             </p>
           </div>

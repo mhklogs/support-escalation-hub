@@ -44,10 +44,10 @@ export default function KEDBLibrary() {
     <div className="w-full max-w-6xl mx-auto space-y-6 p-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="font-head text-xs font-semibold uppercase tracking-[0.24em] text-accent">
+          <p className="font-head text-xs font-semibold  tracking-[0.24em] text-accent">
             known error database
           </p>
-          <h2 className="mt-1 font-display text-2xl uppercase tracking-tight">KEDB library</h2>
+          <h2 className="mt-1 font-display text-2xl  leading-tight">KEDB library</h2>
           <p className="mt-1 text-xs text-ink-soft">{state.kbArticles.length} known-error articles powering the triage</p>
         </div>
         <button
@@ -84,7 +84,7 @@ export default function KEDBLibrary() {
             <p className="mb-3 text-xs leading-relaxed text-ink-soft">{article.content}</p>
             {article.steps && article.steps.length > 0 && (
               <div>
-                <span className="flex items-center gap-1 font-mono text-[10px] font-bold uppercase tracking-wider text-muted">
+                <span className="flex items-center gap-1 font-mono text-[10px] font-bold  tracking-wider text-muted">
                   <Sparkles size={11} className="text-accent" />Resolution Steps:
                 </span>
                 <ol className="mt-1 list-decimal space-y-1 pl-4 text-[11px] text-ink-soft">
@@ -107,7 +107,7 @@ export default function KEDBLibrary() {
           <div className="accent-edge panel w-full max-w-lg overflow-y-auto max-h-[90vh]">
             <div className="flex items-center justify-between border-b border-line bg-abyss p-4">
               <h3 className="flex items-center gap-2 font-head text-sm font-semibold text-ink"><BookOpen size={16} className="text-accent" />New KB Article</h3>
-              <button onClick={() => setIsAdding(false)} className="text-muted transition-colors hover:text-white"><X size={16} /></button>
+              <button onClick={() => setIsAdding(false)} className="text-muted transition-colors hover:text-ink"><X size={16} /></button>
             </div>
             <form onSubmit={handleAdd} className="space-y-4 p-5 text-xs">
               <div className="grid grid-cols-2 gap-4">

@@ -17,7 +17,7 @@ class ErrorBoundary extends Component<{children: ReactNode}> {
                 <path d="M24 20v9M24 33.5v.01" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
               </svg>
             </div>
-            <h1 className="font-display text-xl font-bold text-ink uppercase tracking-tight">Something went wrong</h1>
+            <h1 className="font-display text-xl font-bold text-ink  leading-tight">Something went wrong</h1>
             <pre className="max-h-60 overflow-auto rounded-xl border border-line bg-abyss p-4 text-left text-xs text-ink-soft">{(this.state.error as Error).stack}</pre>
             <button onClick={() => location.reload()} className="rounded-xl bg-accent hover:brightness-110 text-void px-6 py-2 font-head font-semibold text-sm transition-all">
               Reload Page

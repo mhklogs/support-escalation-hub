@@ -63,7 +63,7 @@ export default function AgentOutput({ ticket }: Props) {
     return (
       <div className="panel overflow-hidden">
         <div className="border-b border-line bg-abyss py-3.5 px-5">
-          <h3 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-ink-soft">
+          <h3 className="flex items-center gap-2 text-xs font-bold  tracking-wider text-ink-soft">
             <Bot size={15} className="text-accent" />Agent Output
           </h3>
         </div>
@@ -98,7 +98,7 @@ export default function AgentOutput({ ticket }: Props) {
   return (
     <div className="panel overflow-hidden">
       <div className="flex items-center justify-between border-b border-line bg-abyss py-3.5 px-5">
-        <h3 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-ink-soft">
+        <h3 className="flex items-center gap-2 text-xs font-bold  tracking-wider text-ink-soft">
           <Bot size={15} className="text-accent" />Agent Diagnostic Output
         </h3>
         <span className="flex items-center gap-1 rounded border border-emerald-400/25 bg-emerald-400/10 px-2 py-0.5 font-mono text-xs text-emerald-300 font-medium">
@@ -109,18 +109,18 @@ export default function AgentOutput({ ticket }: Props) {
       <div className="space-y-6 p-6">
         <div className="grid grid-cols-1 gap-4 border-b border-line pb-5 md:grid-cols-3">
           <div className="space-y-1">
-            <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-muted">Tier Assignment</span>
+            <span className="font-mono text-[10px] font-bold  tracking-wider text-muted">Tier Assignment</span>
             <div className="flex items-center gap-2 font-head text-xs font-bold text-ink">
               <span className={`h-2.5 w-2.5 rounded-full ${ticket.assignedTier === 3 ? 'bg-rose-400' : ticket.assignedTier === 2 ? 'bg-amber-300' : 'bg-emerald-400'}`} />
               Tier {ticket.assignedTier} &mdash; {ticket.assignedTier === 3 ? 'Infrastructure' : ticket.assignedTier === 2 ? 'Technical' : 'General'}
             </div>
           </div>
           <div className="space-y-1">
-            <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-muted">Sentiment</span>
+            <span className="font-mono text-[10px] font-bold  tracking-wider text-muted">Sentiment</span>
             <span className={`inline-block rounded border px-2 py-0.5 text-[10px] ${getSentimentColor(ticket.sentiment)}`}>{ticket.sentiment}</span>
           </div>
           <div className="space-y-1">
-            <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-muted">KEDB Match</span>
+            <span className="font-mono text-[10px] font-bold  tracking-wider text-muted">KEDB Match</span>
             {matchedKB ? (
               <span className="flex max-w-full items-center gap-1 truncate rounded border border-emerald-400/25 bg-emerald-400/10 px-2 py-0.5 text-[10px] text-emerald-300">
                 <BookOpen size={10} />{matchedKB.id}: {matchedKB.title}
@@ -147,7 +147,7 @@ export default function AgentOutput({ ticket }: Props) {
 
         <div className="space-y-3">
           <div className="flex items-center justify-between">
-            <label className="flex items-center gap-1 font-head text-xs font-bold uppercase tracking-wider text-ink-soft">
+            <label className="flex items-center gap-1 font-head text-xs font-bold  tracking-wider text-ink-soft">
               <Send size={12} className="text-accent" />Customer Response Draft
             </label>
             <button
@@ -209,7 +209,7 @@ function HandoverSummarySummary({ ticket, isEditingMode, setIsEditingMode, onCop
   return (
     <div className="overflow-hidden rounded-xl border border-rose-400/30 bg-rose-400/5">
       <div className="flex items-center justify-between bg-rose-950/70 px-5 py-3">
-        <h4 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-rose-200">
+        <h4 className="flex items-center gap-2 text-xs font-bold  tracking-wider text-rose-200">
           <span className="font-mono text-rose-300">[ESC-{ticket.id}]</span>INTERNAL HANDOVER (Tier 3)
         </h4>
         <button
@@ -217,7 +217,7 @@ function HandoverSummarySummary({ ticket, isEditingMode, setIsEditingMode, onCop
             const text = `[ESC-${ticket.id}] HANDOVER\nImpact: ${editable.customerImpact}\nDefect: ${editable.defectSummary}\nRoot Cause: ${editable.rootCauseHypothesis}\nEnvironment: ${editable.environmentSpecs}\nNext Steps: ${editable.nextSteps}`;
             onCopy(text, 'Handover');
           }}
-          className="flex items-center gap-1 rounded-md bg-rose-950/80 px-2 py-1 text-[10px] text-rose-200 transition-all hover:bg-rose-950 hover:text-white"
+          className="flex items-center gap-1 rounded-md bg-rose-950/80 px-2 py-1 text-[10px] text-rose-200 transition-all hover:bg-rose-950 hover:text-ink"
         >
           <Copy size={11} /> Copy
         </button>
@@ -257,7 +257,7 @@ function HandoverSummarySummary({ ticket, isEditingMode, setIsEditingMode, onCop
             </button>
             <button
               onClick={handleSaveHandover}
-              className="flex items-center gap-1.5 rounded bg-rose-500 px-3 py-1.5 text-xs font-semibold text-white shadow-[0_0_16px_-6px_rgba(244,63,94,0.9)] transition-all hover:brightness-110"
+              className="flex items-center gap-1.5 rounded bg-rose-500 px-3 py-1.5 text-xs font-semibold text-ink shadow-[0_0_16px_-6px_rgba(244,63,94,0.9)] transition-all hover:brightness-110"
             >
               <Send size={12} />Dispatch
             </button>

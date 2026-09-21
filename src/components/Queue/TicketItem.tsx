@@ -102,7 +102,7 @@ export default function TicketItem({ ticket, isActive, onSelect }: Props) {
               Assigned Tier {ticket.assignedTier}
             </span>
           ) : (
-            <span className="font-mono text-[9px] uppercase tracking-wider text-muted">Awaiting triage</span>
+            <span className="font-mono text-[9px]  tracking-wider text-muted">Awaiting triage</span>
           )}
           <ChevronRight size={12} className={`text-muted transition-transform ${isActive ? 'text-accent' : ''}`} />
         </div>

@@ -55,7 +55,7 @@ function CreateTicketModal({ onClose }: { onClose: () => void }) {
           <h3 className="font-head text-sm font-semibold text-ink flex items-center gap-2">
             <Plus size={15} className="text-accent" />New Support Ticket
           </h3>
-          <button onClick={onClose} className="text-muted transition-colors hover:text-white">
+          <button onClick={onClose} className="text-muted transition-colors hover:text-ink">
             <X size={16} />
           </button>
         </div>
@@ -145,7 +145,7 @@ function AppContent() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-void font-sans text-ink selection:bg-accent/40 selection:text-white">
+    <div className="flex min-h-screen flex-col bg-void font-sans text-ink selection:bg-accent/40 selection:text-ink">
       {state.isOnboarding ? (
         <SetupScreen />
       ) : (
