@@ -29,9 +29,9 @@ export default function IngressStream() {
     switch (level) {
       case 'CRITICAL': case 'FATAL': return 'text-rose-400 font-bold';
       case 'ERROR': return 'text-rose-400';
-      case 'WARNING': return 'text-amber-400';
-      case 'DEBUG': return 'text-sky-400';
-      default: return 'text-slate-300';
+      case 'WARNING': return 'text-amber-300';
+      case 'DEBUG': return 'text-accent';
+      default: return 'text-ink-soft';
     }
   };
 
@@ -39,49 +39,50 @@ export default function IngressStream() {
   const ticketLogs = activeTicket?.logs || [];
 
   return (
-    <div className="p-6 space-y-6 max-w-6xl mx-auto w-full">
+    <div className="w-full max-w-6xl mx-auto space-y-6 p-6">
       <div>
-        <h2 className="text-lg font-bold text-slate-900">Ingress Stream</h2>
-        <p className="text-xs text-slate-500 mt-1">Live system telemetry and diagnostic log pipeline</p>
+        <p className="font-head text-xs font-semibold uppercase tracking-[0.24em] text-accent">
+          telemetry pipeline
+        </p>
+        <h2 className="mt-1 font-display text-2xl uppercase tracking-tight">Ingress stream</h2>
+        <p className="mt-1 text-xs text-ink-soft">Live system telemetry and diagnostic log pipeline</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-slate-900 text-slate-300 rounded-xl border border-slate-800 shadow-sm overflow-hidden">
-          <div className="flex items-center justify-between px-5 py-3 border-b border-slate-800">
-            <h3 className="text-xs font-semibold text-slate-400 uppercase flex items-center gap-2">
-              <Terminal size={14} />System Telemetry v2.10
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+        <div className="panel overflow-hidden">
+          <div className="flex items-center justify-between border-b border-line px-5 py-3">
+            <h3 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-ink-soft">
+              <Terminal size={14} className="text-accent" />System Telemetry v2.10
             </h3>
-            <span className="text-[9px] text-emerald-400 bg-emerald-950/50 px-2 py-0.5 rounded border border-emerald-900/40 flex items-center gap-1">
-              <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />LIVE
+            <span className="flex items-center gap-1 rounded border border-emerald-400/25 bg-emerald-400/10 px-2 py-0.5 text-[9px] text-emerald-300">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />LIVE
             </span>
           </div>
-          <div ref={streamRef} className="p-4 font-mono text-[10px] space-y-1.5 h-[500px] overflow-y-auto">
+          <div ref={streamRef} className="h-[500px] space-y-1.5 overflow-y-auto p-4 font-mono text-[10px]">
             {streamLogs.map((log, i) => (
               <div key={i} className={`leading-relaxed ${levelColor(log.level)}`}>
-                <span className="text-slate-500">[{log.time}]</span> {log.level}: {log.message}
+                <span className="text-muted">[{log.time}]</span> {log.level}: {log.message}
               </div>
             ))}
           </div>
         </div>
 
-        <div className="bg-slate-900 text-slate-300 rounded-xl border border-slate-800 shadow-sm overflow-hidden">
-          <div className="flex items-center justify-between px-5 py-3 border-b border-slate-800">
-            <h3 className="text-xs font-semibold text-slate-400 uppercase flex items-center gap-2">
-              <Activity size={14} />Ticket Log Context
+        <div className="panel overflow-hidden">
+          <div className="flex items-center justify-between border-b border-line px-5 py-3">
+            <h3 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-ink-soft">
+              <Activity size={14} className="text-accent" />Ticket Log Context
             </h3>
-            <span className="text-[9px] text-slate-400 bg-slate-800 px-2 py-0.5 rounded border border-slate-700 font-mono">
-              {activeTicket ? activeTicket.id : 'NO TICKET'}
-            </span>
+            <span className="font-mono text-[9px] text-muted">{activeTicket ? activeTicket.id : 'NO TICKET'}</span>
           </div>
-          <div className="p-4 font-mono text-[10px] space-y-1.5 h-[500px] overflow-y-auto">
+          <div className="h-[500px] space-y-1.5 overflow-y-auto break-all p-4 font-mono text-[10px]">
             {ticketLogs.length > 0 ? ticketLogs.map((log, i) => {
-              let color = 'text-slate-300';
+              let color = 'text-ink-soft';
               if (log.includes('SEVERE') || log.includes('FATAL') || log.includes('CRITICAL') || log.includes('ERROR')) color = 'text-rose-400';
-              else if (log.includes('WARNING') || log.includes('WARN')) color = 'text-amber-400';
-              else if (log.includes('DEBUG')) color = 'text-sky-400';
-              return <div key={i} className={`leading-relaxed break-all ${color}`}>{log}</div>;
+              else if (log.includes('WARNING') || log.includes('WARN')) color = 'text-amber-300';
+              else if (log.includes('DEBUG')) color = 'text-accent';
+              return <div key={i} className={`leading-relaxed ${color}`}>{log}</div>;
             }) : (
-              <div className="text-slate-500 italic">No logs for current ticket.</div>
+              <div className="italic text-muted">No logs for current ticket.</div>
             )}
           </div>
         </div>

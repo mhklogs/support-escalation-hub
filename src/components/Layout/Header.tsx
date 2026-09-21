@@ -1,9 +1,15 @@
 import { useEffect, useState } from 'react';
-import { Sparkles, Terminal, Cpu } from 'lucide-react';
+import { Menu, X, Activity } from 'lucide-react';
+import SupportOpsLogo from '../Brand/Logo';
 
 type EngineStatus = 'checking' | 'active' | 'local';
 
-export default function Header() {
+interface Props {
+  onMenu?: () => void;
+  menuOpen?: boolean;
+}
+
+export default function Header({ onMenu, menuOpen }: Props) {
   const [engine, setEngine] = useState<EngineStatus>('checking');
 
   useEffect(() => {
@@ -19,41 +25,60 @@ export default function Header() {
     return () => { mounted = false; };
   }, []);
 
+  const engineChip =
+    engine === 'checking' ? (
+      <span className="rounded-md border border-line bg-panel/70 px-2.5 py-1 font-mono text-[10px] font-bold tracking-[0.12em] text-ink-soft flex items-center gap-1.5">
+        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-muted" />
+        AI PILOT: CHECKING
+      </span>
+    ) : engine === 'active' ? (
+      <span className="rounded-md border border-emerald-400/25 bg-emerald-400/10 px-2.5 py-1 font-mono text-[10px] font-bold tracking-[0.12em] text-emerald-300 flex items-center gap-1.5">
+        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+        AI PILOT: ACTIVE
+      </span>
+    ) : (
+      <span
+        className="rounded-md border border-amber-400/25 bg-amber-400/10 px-2.5 py-1 font-mono text-[10px] font-bold tracking-[0.12em] text-amber-300 flex items-center gap-1.5"
+        title="No GEMINI_API_KEY configured — triage runs on the built-in local engine."
+      >
+        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-amber-400" />
+        AI PILOT: LOCAL MODE
+      </span>
+    );
+
   return (
-    <header className="bg-slate-900 border-b border-slate-800 py-3.5 px-6 flex items-center justify-between shrink-0 text-white shadow-md">
-      <div className="flex items-center space-x-3">
-        <div className="bg-indigo-500/10 text-indigo-400 p-1.5 rounded-lg border border-indigo-500/20">
-          <Cpu size={16} />
-        </div>
-        <div>
-          <h2 className="text-xs font-bold tracking-tight text-white flex items-center gap-1.5">
-            Support Escalation Hub
-            <Sparkles size={11} className="text-indigo-400" />
-          </h2>
-          <p className="text-[10px] text-slate-400">Autonomous AI Support OS · Escalation, KEDB & ingress telemetry</p>
+    <header className="glass-strong z-40 flex h-16 shrink-0 items-center gap-3 border-b border-line px-4 md:px-6">
+      {onMenu && (
+        <button
+          onClick={onMenu}
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-ink-soft transition hover:bg-white/5 hover:text-white lg:hidden"
+          aria-label="Toggle navigation"
+        >
+          {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+        </button>
+      )}
+
+      <div className="hidden items-center gap-3 lg:flex">
+        <span className="logo-tile flex h-10 w-10 items-center justify-center">
+          <SupportOpsLogo size={30} />
+        </span>
+        <div className="leading-none">
+          <p className="font-display text-sm font-bold tracking-[0.1em] text-ink">SUPPORTOPS</p>
+          <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.24em] text-muted">
+            escalation hub
+          </p>
         </div>
       </div>
 
-      <div className="flex items-center space-x-3 text-xs">
-        {engine === 'checking' ? (
-          <span className="text-[10px] bg-slate-800 text-slate-300 border border-slate-700 px-2.5 py-1 rounded-md flex items-center gap-1.5 font-mono font-bold">
-            <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-pulse" />
-            AI ENGINE: CHECKING...
-          </span>
-        ) : engine === 'active' ? (
-          <span className="text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2.5 py-1 rounded-md flex items-center gap-1.5 font-mono font-bold">
-            <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" />
-            AI ENGINE: ACTIVE
-          </span>
-        ) : (
-          <span className="text-[10px] bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2.5 py-1 rounded-md flex items-center gap-1.5 font-mono font-bold" title="No GEMINI_API_KEY configured — analysis runs on the built-in local engine.">
-            <span className="w-1.5 h-1.5 bg-amber-400 rounded-full animate-pulse" />
-            AI ENGINE: LOCAL MODE
-          </span>
-        )}
-        <span className="text-[10px] bg-slate-800 text-slate-300 border border-slate-700 px-2.5 py-1 rounded-md flex items-center gap-1.5 font-mono">
-          <Terminal size={11} className="text-indigo-400" />
-          TERMINAL_REPAIR: READY
+      <div className="flex items-center gap-1.5 overflow-hidden lg:hidden">
+        <SupportOpsLogo size={26} ring={false} color="#FF8A3D" />
+      </div>
+
+      <div className="ml-auto flex items-center gap-2">
+        {engineChip}
+        <span className="hidden items-center gap-1.5 rounded-md border border-line bg-panel/70 px-2.5 py-1 font-mono text-[10px] tracking-[0.12em] text-muted sm:flex">
+          <Activity size={11} className="text-accent" />
+          TRIAGE: READY
         </span>
       </div>
     </header>

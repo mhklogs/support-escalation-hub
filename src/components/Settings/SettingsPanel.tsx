@@ -75,29 +75,32 @@ export default function SettingsPanel() {
   };
 
   return (
-    <div className="p-6 space-y-6 max-w-4xl mx-auto w-full">
+    <div className="w-full max-w-4xl mx-auto space-y-6 p-6">
       <div>
-        <h2 className="text-lg font-bold text-slate-900">Settings & Integrations</h2>
-        <p className="text-xs text-slate-500 mt-1">Configure external service connections</p>
+        <p className="font-head text-xs font-semibold uppercase tracking-[0.24em] text-accent">
+          integrations
+        </p>
+        <h2 className="mt-1 font-display text-2xl uppercase tracking-tight">Settings &amp; connections</h2>
+        <p className="mt-1 text-xs text-ink-soft">Configure the external services that power the triage deck</p>
       </div>
 
       <div className="space-y-4">
         {integrations.map(integ => {
           const Icon = integ.icon;
           return (
-            <div key={integ.id} className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
-              <div className="flex items-start justify-between mb-4">
+            <div key={integ.id} className="panel p-5">
+              <div className="mb-4 flex items-start justify-between">
                 <div className="flex items-center gap-3">
-                  <div className={`p-2.5 rounded-lg ${integ.status === 'connected' ? 'bg-emerald-50' : 'bg-slate-100'}`}>
-                    <Icon size={18} className={integ.status === 'connected' ? 'text-emerald-600' : 'text-slate-500'} />
+                  <div className={`rounded-lg p-2.5 ${integ.status === 'connected' ? 'bg-emerald-400/10' : 'bg-panel-2'}`}>
+                    <Icon size={18} className={integ.status === 'connected' ? 'text-emerald-300' : 'text-muted'} />
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-slate-900">{integ.name}</h3>
-                    <p className="text-xs text-slate-500">{integ.description}</p>
+                    <h3 className="font-head text-sm font-semibold text-ink">{integ.name}</h3>
+                    <p className="text-xs text-ink-soft">{integ.description}</p>
                   </div>
                 </div>
-                <span className={`text-[10px] px-2 py-0.5 rounded-full border font-medium flex items-center gap-1 ${
-                  integ.status === 'connected' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-slate-50 text-slate-500 border-slate-200'
+                <span className={`flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-medium ${
+                  integ.status === 'connected' ? 'bg-emerald-400/10 text-emerald-300 border-emerald-400/30' : 'bg-panel-2 text-muted border-line'
                 }`}>
                   {integ.status === 'connected' ? <Check size={10} /> : <AlertCircle size={10} />}
                   {integ.status === 'connected' ? 'Connected' : 'Not Configured'}
@@ -107,13 +110,13 @@ export default function SettingsPanel() {
               <div className="space-y-3">
                 {integ.fields.map(field => (
                   <div key={field.key}>
-                    <label className="text-xs font-medium text-slate-700 block mb-1">{field.label}</label>
+                    <label className="mb-1 block text-xs font-medium text-ink-soft">{field.label}</label>
                     <input
                       type="password"
                       placeholder={field.placeholder}
                       value={values[field.key] || ''}
                       onChange={e => setValues({ ...values, [field.key]: e.target.value })}
-                      className="w-full text-xs p-2.5 border border-slate-200 rounded-md focus:outline-none focus:ring-1 focus:ring-slate-400"
+                      className="w-full rounded-md border border-line bg-void p-2.5 text-xs text-ink transition-all placeholder:text-muted focus:border-accent/50 focus:outline-none focus:ring-1 focus:ring-accent/30"
                     />
                   </div>
                 ))}
@@ -123,7 +126,7 @@ export default function SettingsPanel() {
                 <button
                   onClick={() => handleSave(integ.id)}
                   disabled={saving === integ.id}
-                  className="bg-slate-900 hover:bg-slate-800 disabled:bg-slate-300 text-white text-xs px-4 py-2 rounded-lg font-medium flex items-center gap-1.5 shadow transition-all duration-200"
+                  className="flex items-center gap-1.5 rounded-lg bg-accent px-4 py-2 text-xs font-medium text-void shadow-[0_0_18px_-6px_rgba(255,138,61,0.9)] transition-all duration-200 hover:brightness-110 disabled:bg-panel-2 disabled:text-muted disabled:shadow-none"
                 >
                   {saving === integ.id ? (
                     <RefreshCw size={12} className="animate-spin" />

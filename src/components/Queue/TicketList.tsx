@@ -26,16 +26,18 @@ export default function TicketList({ onOpenCreate }: Props) {
   }, [state.tickets, searchQuery, statusFilter]);
 
   return (
-    <div className="h-full flex flex-col">
-      <div className="p-4 border-b border-slate-100 shrink-0 space-y-3 bg-slate-50/50">
+    <div className="flex h-[52vh] min-h-0 flex-col lg:h-full">
+      <div className="shrink-0 space-y-3 border-b border-line bg-abyss/60 p-4">
         <div className="flex items-center justify-between">
-          <h2 className="font-semibold text-slate-900 flex items-center gap-2 text-sm">
+          <h2 className="flex items-center gap-2 font-head text-sm font-semibold text-ink">
             <span>Active Queue</span>
-            <span className="text-xs font-mono bg-slate-200 px-2 py-0.5 rounded-full text-slate-600">{state.tickets.length}</span>
+            <span className="rounded-full border border-line bg-panel-2 px-2 py-0.5 font-mono text-xs text-muted">
+              {state.tickets.length}
+            </span>
           </h2>
           <button
             onClick={onOpenCreate}
-            className="bg-slate-900 hover:bg-slate-800 text-white text-xs px-2.5 py-1.5 rounded-md flex items-center gap-1 shadow-sm font-medium transition-all duration-200 hover:scale-105 active:scale-95"
+            className="flex items-center gap-1 rounded-lg bg-accent px-2.5 py-1.5 text-xs font-medium text-void shadow-[0_0_16px_-4px_rgba(255,138,61,0.8)] transition-all duration-200 hover:scale-105 active:scale-95"
           >
             <Plus size={14} />
             New Ticket
@@ -43,23 +45,23 @@ export default function TicketList({ onOpenCreate }: Props) {
         </div>
 
         <div className="relative">
-          <Search className="absolute left-3 top-2.5 text-slate-400" size={14} />
+          <Search className="absolute left-3 top-2.5 text-muted" size={14} />
           <input
             type="text"
             placeholder="Search tickets, customers, companies..."
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
-            className="w-full text-xs pl-9 pr-4 py-2 bg-white border border-slate-200 rounded-md focus:outline-none focus:ring-1 focus:ring-slate-400 focus:border-slate-400 transition-all"
+            className="w-full rounded-md border border-line bg-void py-2 pl-9 pr-4 text-xs text-ink transition-all placeholder:text-muted focus:border-accent/50 focus:outline-none focus:ring-1 focus:ring-accent/30"
           />
         </div>
 
-        <div className="flex bg-slate-200/60 p-1 rounded-md text-[10px] font-medium text-slate-600">
+        <div className="flex rounded-md bg-panel-2/70 p-1 text-[10px] font-medium text-muted">
           {['All', 'Open', 'Resolved', 'Escalated'].map(s => (
             <button
               key={s}
               onClick={() => setStatusFilter(s)}
-              className={`flex-1 py-1 rounded transition-all duration-200 text-center ${
-                statusFilter === s ? 'bg-white text-slate-900 shadow-sm font-semibold' : 'hover:text-slate-900'
+              className={`flex-1 rounded py-1 text-center transition-all duration-200 ${
+                statusFilter === s ? 'bg-accent/20 text-accent font-semibold' : 'hover:text-ink'
               }`}
             >
               {s}
@@ -68,16 +70,16 @@ export default function TicketList({ onOpenCreate }: Props) {
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto divide-y divide-slate-100">
+      <div className="flex-1 divide-y divide-line overflow-y-auto">
         {isLoading ? (
-          <div className="p-8 text-center text-slate-400 space-y-2">
-            <RefreshCw className="animate-spin mx-auto" size={20} />
+          <div className="space-y-2 p-8 text-center text-muted">
+            <RefreshCw className="mx-auto animate-spin" size={20} />
             <p className="text-xs">Loading tickets...</p>
           </div>
         ) : filteredTickets.length === 0 ? (
-          <div className="p-8 text-center text-slate-400">
+          <div className="p-8 text-center text-muted">
             <p className="text-xs font-medium">No matching tickets</p>
-            <p className="text-[10px] mt-1">Adjust filters or create a custom ticket.</p>
+            <p className="mt-1 text-[10px]">Adjust filters or create a custom ticket.</p>
           </div>
         ) : (
           filteredTickets.map((ticket: any) => (

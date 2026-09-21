@@ -9,12 +9,17 @@ class ErrorBoundary extends Component<{children: ReactNode}> {
   render() {
     if (this.state.error) {
       return (
-        <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4">
+        <div className="min-h-screen bg-void flex items-center justify-center p-4">
           <div className="max-w-md text-center space-y-4">
-            <div className="text-rose-400 text-4xl">⚠</div>
-            <h1 className="text-white text-xl font-bold">Something went wrong</h1>
-            <pre className="text-slate-400 text-xs bg-slate-900 p-4 rounded-xl text-left overflow-auto max-h-60">{(this.state.error as Error).stack}</pre>
-            <button onClick={() => location.reload()} className="bg-emerald-600 hover:bg-emerald-500 text-white px-6 py-2 rounded-xl font-semibold text-sm transition-all">
+            <div className="mx-auto flex h-16 w-16 items-center justify-center">
+              <svg viewBox="0 0 48 48" fill="none" className="h-14 w-14 text-rose-400" aria-hidden="true">
+                <path d="M24 8L42 40H6L24 8Z" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round" />
+                <path d="M24 20v9M24 33.5v.01" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+              </svg>
+            </div>
+            <h1 className="font-display text-xl font-bold text-ink uppercase tracking-tight">Something went wrong</h1>
+            <pre className="max-h-60 overflow-auto rounded-xl border border-line bg-abyss p-4 text-left text-xs text-ink-soft">{(this.state.error as Error).stack}</pre>
+            <button onClick={() => location.reload()} className="rounded-xl bg-accent hover:brightness-110 text-void px-6 py-2 font-head font-semibold text-sm transition-all">
               Reload Page
             </button>
           </div>

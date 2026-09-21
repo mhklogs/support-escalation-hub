@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useAppState } from '../../store/index';
 import { ProjectFile, ProjectAnalysisResult } from '../../types/index';
 import Cinematic3DCanvas from './Cinematic3DCanvas';
-import { 
-  FolderCode, Upload, FileText, Terminal, ShieldAlert, CheckCircle, 
+import {
+  FolderCode, Upload, FileText, Terminal, ShieldAlert, CheckCircle,
   AlertTriangle, Cpu, Sparkles, Code2, Play, BookOpen, Layers, Zap, ArrowRight, RefreshCw, Check, Wrench, FileDiff, Scan, Flame
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -131,7 +131,7 @@ export default function ProjectAnalyzer() {
     setIsAnalyzing(true);
     setResult(null);
     setFixResult(null);
-    setAnalysisProgress(['[0.00s] INITIALIZING_3D_TERMINAL_INSPECTION_MATRIX...']);
+    setAnalysisProgress(['[0.00s] INITIALIZING_TERMINAL_INSPECTION_MATRIX...']);
 
     const steps = [
       '[0.35s] READING_PROJECT_TREE_AND_DEPENDENCY_MANIFESTS...',
@@ -160,7 +160,7 @@ export default function ProjectAnalyzer() {
       if (res.ok) {
         const data: ProjectAnalysisResult = await res.json();
         setResult(data);
-        setAnalysisProgress(prev => [...prev, '[COMPLETED] Codebase 3D Diagnosis Finished! Triage report generated.']);
+        setAnalysisProgress(prev => [...prev, '[COMPLETED] Codebase Diagnosis Finished! Triage report generated.']);
         dispatch({ type: 'SHOW_TOAST', payload: 'Codebase Diagnosis complete!' });
       } else {
         throw new Error('Analysis failed');
@@ -232,105 +232,103 @@ export default function ProjectAnalyzer() {
   };
 
   return (
-    <div className="relative flex-1 bg-slate-950 text-slate-100 p-6 overflow-y-auto space-y-6 font-sans cyber-grid-bg">
-      {/* 3D Interactive Background Particle Canvas */}
+    <div className="cyber-grid-bg relative flex-1 space-y-6 overflow-y-auto bg-void p-6 font-sans text-ink">
+      {/* 3D background particle canvas */}
       <Cinematic3DCanvas isAnalyzing={isAnalyzing} isFixing={isFixing} />
 
-      {/* Futuristic Holographic Hero Header */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="relative z-10 bg-slate-900/80 backdrop-blur-xl border border-indigo-500/30 rounded-2xl p-6 shadow-[0_0_50px_rgba(99,102,241,0.12)] flex flex-col md:flex-row items-start md:items-center justify-between gap-4 overflow-hidden"
+        className="accent-edge relative z-10 flex flex-col items-start justify-between gap-4 overflow-hidden rounded-2xl border border-accent/20 bg-panel/80 p-6 backdrop-blur-xl md:flex-row md:items-center"
       >
-        {/* Holographic Laser Scanner Line during active scan */}
         {(isAnalyzing || isFixing) && (
-          <div className="absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-emerald-400 to-transparent animate-scanline z-20 shadow-[0_0_15px_#10b981]" />
+          <div className="animate-scanline absolute inset-x-0 z-20 h-1 bg-gradient-to-r from-transparent via-accent to-transparent shadow-[0_0_15px_#FF8A3D]" />
         )}
 
-        <div className="space-y-1.5 z-10">
+        <div className="z-10 space-y-1.5">
           <div className="flex items-center space-x-2">
-            <span className="bg-indigo-500/15 text-indigo-300 border border-indigo-500/30 text-[10px] font-mono px-3 py-0.5 rounded-full font-bold uppercase tracking-wider flex items-center gap-1.5 shadow-[0_0_15px_rgba(99,102,241,0.2)]">
-              <Sparkles size={11} className="text-indigo-400 animate-pulse" /> Gemini 2.0 Flash AI Core
+            <span className="flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/10 px-3 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-accent">
+              <Sparkles size={11} className="animate-pulse" /> Gemini AI Core
             </span>
-            <span className="bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 text-[10px] font-mono px-3 py-0.5 rounded-full font-bold shadow-[0_0_15px_rgba(16,185,129,0.2)]">
-              3D Holographic Matrix
+            <span className="flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/10 px-3 py-0.5 font-mono text-[10px] font-bold text-accent-soft">
+              Autonomous Repair Engine
             </span>
           </div>
-          <h2 className="text-2xl font-black text-white tracking-tight flex items-center gap-3 bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent">
-            <FolderCode className="text-indigo-400 shrink-0" size={26} />
+          <h2 className="flex items-center gap-3 bg-gradient-to-r from-ink via-ink to-muted bg-clip-text text-2xl font-black tracking-tight text-transparent">
+            <FolderCode className="shrink-0 text-accent" size={26} />
             {projectName}
           </h2>
-          <p className="text-xs text-slate-400 max-w-xl leading-relaxed">
-            Drop your local repository or select files to trigger autonomous 3D code inspection, security vulnerability triage, and live terminal auto-fixing.
+          <p className="max-w-xl text-xs leading-relaxed text-ink-soft">
+            Drop your local repository or select files to trigger autonomous code inspection, security
+            vulnerability triage, and live terminal auto-fixing.
           </p>
         </div>
 
-        <div className="flex items-center gap-3 shrink-0 z-10">
-          <label className="cursor-pointer bg-slate-800/80 hover:bg-slate-700/80 text-slate-200 border border-slate-700/80 hover:border-indigo-500/50 px-4 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2 transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg backdrop-blur-md">
-            <Upload size={14} className="text-indigo-400" />
+        <div className="z-10 flex shrink-0 items-center gap-3">
+          <label className="flex cursor-pointer items-center gap-2 rounded-xl border border-line bg-panel-2/80 px-4 py-2.5 text-xs font-bold text-ink-soft shadow-lg backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-accent/40 active:scale-95">
+            <Upload size={14} className="text-accent" />
             <span>Select Local Project</span>
-            <input 
-              type="file" 
-              multiple 
-              onChange={handleFileUpload} 
-              className="hidden" 
+            <input
+              type="file"
+              multiple
+              onChange={handleFileUpload}
+              className="hidden"
               // @ts-ignore
-              directory="" 
-              webkitdirectory="" 
+              directory=""
+              webkitdirectory=""
             />
           </label>
 
           <button
             onClick={runDeepAnalysis}
             disabled={isAnalyzing || files.length === 0}
-            className="bg-gradient-to-r from-indigo-600 via-indigo-500 to-purple-600 hover:from-indigo-500 hover:to-purple-500 disabled:from-slate-800 disabled:to-slate-800 text-white px-5 py-2.5 rounded-xl text-xs font-extrabold flex items-center gap-2 shadow-[0_0_25px_rgba(99,102,241,0.4)] transition-all duration-300 hover:scale-105 active:scale-95 disabled:hover:scale-100"
+            className="flex items-center gap-2 rounded-xl bg-accent px-5 py-2.5 text-xs font-extrabold text-void shadow-[0_0_24px_rgba(255,138,61,0.35)] transition-all duration-300 hover:scale-105 hover:brightness-110 active:scale-95 disabled:bg-panel-2 disabled:text-muted disabled:shadow-none disabled:hover:scale-100"
           >
             {isAnalyzing ? (
-              <><RefreshCw size={14} className="animate-spin text-white" /> Scanning Codebase...</>
+              <><RefreshCw size={14} className="animate-spin text-void" /> Scanning Codebase...</>
             ) : (
-              <><Play size={14} className="fill-current" /> Execute 3D Diagnosis</>
+              <><Play size={14} className="fill-current" /> Run Diagnostics</>
             )}
           </button>
         </div>
       </motion.div>
 
-      {/* Main Grid: Code Explorer & 3D Tilt Syntax View */}
-      <div className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* File List */}
-        <motion.div 
+      {/* File Explorer & Syntax View */}
+      <div className="relative z-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
+        <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="bg-slate-900/70 backdrop-blur-xl border border-slate-800/80 rounded-2xl p-4 flex flex-col h-[380px] shadow-2xl glow-card-indigo"
+          className="panel flex h-[380px] flex-col p-4 glow-card-indigo"
         >
-          <div className="flex items-center justify-between border-b border-slate-800/80 pb-3 mb-3">
-            <h3 className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
-              <Layers size={14} className="text-indigo-400" /> Source Code Files ({files.length})
+          <div className="mb-3 flex items-center justify-between border-b border-line pb-3">
+            <h3 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-ink-soft">
+              <Layers size={14} className="text-accent" /> Source Code Files ({files.length})
             </h3>
-            <button 
+            <button
               onClick={() => { setFiles(CURRENT_PROJECT_PRESET); setSelectedFile(CURRENT_PROJECT_PRESET[0]); setProjectName('Support Escalation Hub'); }}
-              className="text-[10px] text-slate-400 hover:text-white bg-slate-800/80 hover:bg-slate-700 px-2.5 py-1 rounded-lg border border-slate-700 transition-all font-mono"
+              className="rounded-lg border border-line bg-panel-2 px-2.5 py-1 font-mono text-[10px] text-muted transition-all hover:bg-white/5 hover:text-white"
             >
               Preset Project
             </button>
           </div>
-          <div className="flex-1 overflow-y-auto space-y-1 pr-1 font-mono text-[11px]">
+          <div className="flex-1 space-y-1 overflow-y-auto pr-1 font-mono text-[11px]">
             {files.map((f, idx) => (
               <button
                 key={idx}
                 onClick={() => setSelectedFile(f)}
-                className={`w-full text-left px-3 py-2 rounded-xl flex items-center justify-between transition-all duration-200 ${
+                className={`flex w-full items-center justify-between rounded-xl px-3 py-2 text-left transition-all duration-200 ${
                   selectedFile?.path === f.path
-                    ? 'bg-gradient-to-r from-indigo-600/30 to-purple-600/20 text-indigo-200 border border-indigo-500/40 font-semibold shadow-[0_0_15px_rgba(99,102,241,0.2)]'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
+                    ? 'border border-accent/40 bg-accent/15 font-semibold text-accent-soft shadow-[0_0_14px_rgba(255,138,61,0.2)]'
+                    : 'text-muted hover:bg-white/[0.04] hover:text-ink-soft'
                 }`}
               >
-                <span className="truncate flex items-center gap-2">
-                  <FileText size={13} className={selectedFile?.path === f.path ? 'text-indigo-400' : 'text-slate-500'} />
+                <span className="flex items-center gap-2 truncate">
+                  <FileText size={13} className={selectedFile?.path === f.path ? 'text-accent' : 'text-muted'} />
                   {f.path}
                 </span>
-                <span className="text-[9px] text-slate-500 shrink-0 font-mono">
+                <span className="shrink-0 font-mono text-[9px] text-muted">
                   {f.content ? `${f.content.split('\n').length} L` : ''}
                 </span>
               </button>
@@ -338,44 +336,43 @@ export default function ProjectAnalyzer() {
           </div>
         </motion.div>
 
-        {/* 3D Code View Window */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="lg:col-span-2 bg-slate-900/70 backdrop-blur-xl border border-slate-800/80 rounded-2xl p-4 flex flex-col h-[380px] shadow-2xl relative overflow-hidden glow-card-indigo"
+          className="panel relative flex h-[380px] flex-col overflow-hidden p-4 glow-card-indigo lg:col-span-2"
         >
-          <div className="flex items-center justify-between border-b border-slate-800/80 pb-3 mb-3">
+          <div className="mb-3 flex items-center justify-between border-b border-line pb-3">
             <div className="flex items-center space-x-2">
-              <Code2 size={16} className="text-indigo-400" />
-              <span className="font-mono text-xs font-bold text-slate-200">{selectedFile?.path || 'No file selected'}</span>
+              <Code2 size={16} className="text-accent" />
+              <span className="font-mono text-xs font-bold text-ink-soft">{selectedFile?.path || 'No file selected'}</span>
             </div>
-            <span className="text-[10px] font-mono text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded border border-indigo-500/20">LIVE_SYNTAX_VIEW</span>
+            <span className="rounded border border-accent/30 bg-accent/10 px-2 py-0.5 font-mono text-[10px] text-accent">LIVE_SYNTAX_VIEW</span>
           </div>
-          <pre className="flex-1 overflow-auto font-mono text-[11px] text-slate-300 bg-slate-950/90 p-4 rounded-xl border border-slate-800/80 leading-relaxed whitespace-pre-wrap selection:bg-indigo-500 selection:text-white">
+          <pre className="flex-1 overflow-auto whitespace-pre-wrap rounded-xl border border-line bg-void/90 p-4 font-mono text-[11px] leading-relaxed text-ink-soft selection:bg-accent/40 selection:text-white">
             {selectedFile?.content || '// Select a file from the explorer to preview source code...'}
           </pre>
         </motion.div>
       </div>
 
-      {/* Terminal Stream Execution Window */}
+      {/* Terminal Stream */}
       {analysisProgress.length > 0 && (
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          className="relative z-10 bg-slate-950/90 backdrop-blur-xl border border-slate-800 rounded-2xl p-4 shadow-2xl space-y-2 font-mono text-[11px] glow-card-emerald"
+          className="panel relative z-10 space-y-2 p-4 font-mono text-[11px] glow-card-emerald"
         >
-          <div className="flex items-center justify-between border-b border-slate-800/80 pb-2 mb-2 text-slate-400">
-            <span className="flex items-center gap-2 font-bold uppercase tracking-wider text-[10px]">
-              <Terminal size={14} className="text-emerald-400" /> Terminal Execution Log
+          <div className="mb-2 flex items-center justify-between border-b border-line pb-2 text-muted">
+            <span className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider">
+              <Terminal size={14} className="text-accent" /> Terminal Execution Log
             </span>
-            <span className="text-[9px] text-emerald-400 bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20 font-bold">
+            <span className="rounded-full border border-emerald-400/25 bg-emerald-400/10 px-2.5 py-0.5 text-[9px] font-bold text-emerald-300">
               TERMINAL_ACTIVE
             </span>
           </div>
-          <div className="space-y-1 max-h-36 overflow-y-auto pr-2 leading-relaxed">
+          <div className="max-h-36 space-y-1 overflow-y-auto pr-2 leading-relaxed">
             {analysisProgress.map((line, i) => (
-              <div key={i} className={line.includes('COMPLETED') || line.includes('REPAIR_COMPLETE') ? 'text-emerald-400 font-bold' : line.includes('REPAIR') ? 'text-indigo-400 font-semibold' : line.includes('WARNING') ? 'text-amber-400' : 'text-slate-400'}>
+              <div key={i} className={line.includes('COMPLETED') || line.includes('REPAIR_COMPLETE') ? 'font-bold text-emerald-300' : line.includes('REPAIR') ? 'font-semibold text-accent-soft' : line.includes('WARNING') ? 'text-amber-300' : 'text-muted'}>
                 {line}
               </div>
             ))}
@@ -390,29 +387,29 @@ export default function ProjectAnalyzer() {
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.98 }}
-            className="relative z-10 bg-gradient-to-r from-emerald-950/90 via-slate-900 to-indigo-950/90 backdrop-blur-xl border border-emerald-500/40 rounded-2xl p-5 shadow-[0_0_40px_rgba(16,185,129,0.15)] space-y-3"
+            className="relative z-10 space-y-3 rounded-2xl border border-emerald-400/30 bg-panel/90 p-5 shadow-[0_0_40px_rgba(255,138,61,0.12)]"
           >
             <div className="flex items-center justify-between">
-              <h3 className="text-xs font-extrabold text-emerald-400 uppercase tracking-wider flex items-center gap-2">
+              <h3 className="flex items-center gap-2 text-xs font-extrabold uppercase tracking-wider text-emerald-300">
                 <CheckCircle size={16} /> Backend Terminal Repair Applied
               </h3>
-              <span className="text-[10px] font-mono text-emerald-300 bg-emerald-500/15 border border-emerald-500/30 px-2.5 py-0.5 rounded-full font-bold">
+              <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2.5 py-0.5 font-mono text-[10px] font-bold text-emerald-300">
                 {fixResult.remediationStatus}
               </span>
             </div>
-            <p className="text-xs text-slate-200 leading-relaxed bg-slate-950/80 p-3.5 rounded-xl border border-slate-800">
+            <p className="rounded-xl border border-line bg-void p-3.5 text-xs leading-relaxed text-ink-soft">
               {fixResult.summaryOfFixes}
             </p>
 
             <div className="space-y-2 pt-1">
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1">
-                <FileDiff size={12} className="text-emerald-400" /> Applied Code Patches ({fixResult.fixedFiles.length} files)
+              <span className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-muted">
+                <FileDiff size={12} className="text-accent" /> Applied Code Patches ({fixResult.fixedFiles.length} files)
               </span>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
                 {fixResult.fixedFiles.map((fixed, i) => (
-                  <div key={i} className="bg-slate-950/90 p-3.5 rounded-xl border border-slate-800 font-mono text-[10px] space-y-1">
-                    <span className="text-emerald-400 font-bold">{fixed.path}</span>
-                    <p className="text-slate-400">{fixed.diffSummary}</p>
+                  <div key={i} className="space-y-1 rounded-xl border border-line bg-void p-3.5 font-mono text-[10px]">
+                    <span className="font-bold text-accent">{fixed.path}</span>
+                    <p className="text-muted">{fixed.diffSummary}</p>
                   </div>
                 ))}
               </div>
@@ -421,7 +418,7 @@ export default function ProjectAnalyzer() {
         )}
       </AnimatePresence>
 
-      {/* AI Analysis Results View & Fix Controls */}
+      {/* AI Analysis Results */}
       <AnimatePresence>
         {result && (
           <motion.div
@@ -430,19 +427,18 @@ export default function ProjectAnalyzer() {
             exit={{ opacity: 0, y: 20 }}
             className="relative z-10 space-y-6"
           >
-            {/* Action Bar: Auto-Fix All */}
-            <div className="bg-slate-900/80 backdrop-blur-xl border border-indigo-500/30 p-4 rounded-2xl flex items-center justify-between shadow-[0_0_30px_rgba(99,102,241,0.12)]">
+            <div className="panel flex items-center justify-between border-accent/20 p-4">
               <div className="space-y-0.5">
-                <h3 className="text-xs font-extrabold text-white flex items-center gap-2">
-                  <Wrench size={15} className="text-indigo-400 animate-bounce" /> Autonomous Code Repair Engine
+                <h3 className="flex items-center gap-2 font-head text-xs font-extrabold text-ink">
+                  <Wrench size={15} className="animate-bounce text-accent" /> Autonomous Code Repair Engine
                 </h3>
-                <p className="text-[11px] text-slate-400">Trigger Gemini AI terminal scripts to fix all identified vulnerabilities.</p>
+                <p className="text-[11px] text-muted">Trigger Gemini AI terminal scripts to fix all identified vulnerabilities.</p>
               </div>
 
               <button
                 onClick={() => autoFixIssue('All Identified Vulnerabilities & Defects', 3)}
                 disabled={isFixing}
-                className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 hover:from-emerald-500 hover:to-teal-500 disabled:from-slate-800 disabled:to-slate-800 text-white text-xs px-5 py-2.5 rounded-xl font-extrabold flex items-center gap-2 shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-all duration-300 hover:scale-105 active:scale-95"
+                className="flex items-center gap-2 rounded-xl bg-emerald-500 px-5 py-2.5 text-xs font-extrabold text-void shadow-[0_0_20px_rgba(16,185,129,0.3)] transition-all duration-300 hover:scale-105 hover:brightness-110 active:scale-95 disabled:bg-panel-2 disabled:text-muted disabled:shadow-none disabled:hover:scale-100"
               >
                 {isFixing ? (
                   <><RefreshCw size={14} className="animate-spin" /> Repairing Codebase...</>
@@ -452,43 +448,41 @@ export default function ProjectAnalyzer() {
               </button>
             </div>
 
-            {/* Overview & Tech Stack */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-slate-900/70 backdrop-blur-xl border border-slate-800/80 rounded-2xl p-5 shadow-2xl space-y-3 md:col-span-2 glow-card-indigo">
-                <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
-                  <Cpu size={15} className="text-indigo-400" /> Architecture Overview
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+              <div className="panel space-y-3 p-5 glow-card-indigo md:col-span-2">
+                <h3 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-ink-soft">
+                  <Cpu size={15} className="text-accent" /> Architecture Overview
                 </h3>
-                <p className="text-xs text-slate-300 leading-relaxed bg-slate-950/80 p-4 rounded-xl border border-slate-800/80">
+                <p className="rounded-xl border border-line bg-void p-4 text-xs leading-relaxed text-ink-soft">
                   {result.architectureOverview}
                 </p>
                 <div className="flex flex-wrap gap-2 pt-1">
                   {result.techStack.map((tech, idx) => (
-                    <span key={idx} className="bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 text-[10px] px-3 py-1 rounded-full font-semibold font-mono">
+                    <span key={idx} className="rounded-full border border-accent/30 bg-accent/10 px-3 py-1 font-mono text-[10px] font-semibold text-accent-soft">
                       {tech}
                     </span>
                   ))}
                 </div>
               </div>
 
-              {/* Security Audit Badge */}
-              <div className="bg-slate-900/70 backdrop-blur-xl border border-slate-800/80 rounded-2xl p-5 shadow-2xl space-y-3 glow-card-rose">
-                <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
-                  <ShieldAlert size={15} className={result.securityAudit.severity === 'High' ? 'text-rose-400' : 'text-amber-400'} /> Security Audit
+              <div className="panel space-y-3 p-5 glow-card-rose">
+                <h3 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-ink-soft">
+                  <ShieldAlert size={15} className={result.securityAudit.severity === 'High' ? 'text-rose-400' : 'text-amber-300'} /> Security Audit
                 </h3>
-                <div className="flex items-center justify-between bg-slate-950 p-3 rounded-xl border border-slate-800">
-                  <span className="text-xs text-slate-400 font-medium">Risk Level:</span>
-                  <span className={`text-xs font-bold px-3 py-0.5 rounded-full border ${
-                    result.securityAudit.severity === 'High' ? 'bg-rose-500/10 text-rose-400 border-rose-500/20' :
-                    result.securityAudit.severity === 'Medium' ? 'bg-amber-500/10 text-amber-400 border-amber-500/20' :
-                    'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
+                <div className="flex items-center justify-between rounded-xl border border-line bg-void p-3">
+                  <span className="text-xs font-medium text-muted">Risk Level:</span>
+                  <span className={`rounded-full border px-3 py-0.5 text-xs font-bold ${
+                    result.securityAudit.severity === 'High' ? 'bg-rose-400/10 text-rose-300 border-rose-400/30' :
+                    result.securityAudit.severity === 'Medium' ? 'bg-amber-300/10 text-amber-200 border-amber-300/30' :
+                    'bg-emerald-400/10 text-emerald-300 border-emerald-400/30'
                   }`}>
                     {result.securityAudit.severity} Severity
                   </span>
                 </div>
-                <div className="space-y-1.5 font-mono text-[10px] text-slate-300">
+                <div className="space-y-1.5 font-mono text-[10px] text-ink-soft">
                   {result.securityAudit.vulnerabilities.map((vuln, i) => (
-                    <div key={i} className="flex items-start gap-1.5 bg-slate-950/60 p-2.5 rounded-lg border border-slate-800/60">
-                      <AlertTriangle size={12} className="text-amber-400 mt-0.5 shrink-0" />
+                    <div key={i} className="flex items-start gap-1.5 rounded-lg border border-line bg-void/70 p-2.5">
+                      <AlertTriangle size={12} className="mt-0.5 shrink-0 text-amber-300" />
                       <span>{vuln}</span>
                     </div>
                   ))}
@@ -496,37 +490,36 @@ export default function ProjectAnalyzer() {
               </div>
             </div>
 
-            {/* Bugs & Technical Risks Triage */}
-            <div className="bg-slate-900/70 backdrop-blur-xl border border-slate-800/80 rounded-2xl p-5 shadow-2xl space-y-4">
-              <h3 className="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
+            <div className="panel space-y-4 p-5">
+              <h3 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-ink-soft">
                 <AlertTriangle size={15} className="text-rose-400" /> Triage Defect Cards & Quick Repairs
               </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                 {result.bugsAndRisks.map((bug, i) => (
-                  <div key={i} className="bg-slate-950/90 p-4.5 rounded-2xl border border-slate-800 space-y-3 flex flex-col justify-between hover:border-slate-700 transition-all duration-300 hover:scale-[1.01]">
+                  <div key={i} className="flex flex-col justify-between space-y-3 rounded-2xl border border-line bg-void p-4.5 transition-all duration-300 hover:scale-[1.01] hover:border-accent/30">
                     <div className="space-y-1.5">
                       <div className="flex items-center justify-between">
-                        <span className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${
-                          bug.tier === 3 ? 'bg-rose-500/10 text-rose-400 border-rose-500/20' :
-                          bug.tier === 2 ? 'bg-amber-500/10 text-amber-400 border-amber-500/20' :
-                          'bg-blue-500/10 text-blue-400 border-blue-500/20'
+                        <span className={`rounded-full border px-2.5 py-0.5 text-[10px] font-bold ${
+                          bug.tier === 3 ? 'bg-rose-400/10 text-rose-300 border-rose-400/30' :
+                          bug.tier === 2 ? 'bg-amber-300/10 text-amber-200 border-amber-300/30' :
+                          'bg-accent/10 text-accent-soft border-accent/30'
                         }`}>
                           Tier {bug.tier} Defect
                         </span>
-                        <span className="font-mono text-[9px] text-slate-500">{bug.affectedFiles.join(', ')}</span>
+                        <span className="font-mono text-[9px] text-muted">{bug.affectedFiles.join(', ')}</span>
                       </div>
-                      <h4 className="text-xs font-bold text-slate-100">{bug.title}</h4>
-                      <p className="text-[11px] text-slate-400 leading-relaxed">{bug.description}</p>
+                      <h4 className="font-head text-xs font-bold text-ink">{bug.title}</h4>
+                      <p className="text-[11px] leading-relaxed text-ink-soft">{bug.description}</p>
                     </div>
 
-                    <div className="pt-2 border-t border-slate-900 flex items-center justify-between gap-2">
-                      <span className="text-[10px] text-indigo-300 font-mono flex items-center gap-1 truncate">
-                        <Zap size={11} className="text-indigo-400 shrink-0" /> {bug.fixRecommendation.slice(0, 40)}...
+                    <div className="flex items-center justify-between gap-2 border-t border-line pt-2">
+                      <span className="flex items-center gap-1 truncate font-mono text-[10px] text-accent-soft">
+                        <Zap size={11} className="shrink-0 text-accent" /> {bug.fixRecommendation.slice(0, 40)}...
                       </span>
                       <button
                         onClick={() => autoFixIssue(bug.title, bug.tier, bug.affectedFiles)}
                         disabled={isFixing}
-                        className="text-[10px] bg-slate-800 hover:bg-emerald-600 text-slate-200 hover:text-white px-3 py-1.5 rounded-lg font-bold border border-slate-700 hover:border-emerald-500 transition-all duration-200 flex items-center gap-1.5 shrink-0 shadow-md"
+                        className="flex shrink-0 items-center gap-1.5 rounded-lg border border-line bg-panel-2 px-3 py-1.5 text-[10px] font-bold text-ink-soft shadow-md transition-all duration-200 hover:border-emerald-400/40 hover:bg-emerald-400/10 hover:text-emerald-300"
                       >
                         <Wrench size={11} /> Fix Issue
                       </button>

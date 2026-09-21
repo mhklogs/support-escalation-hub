@@ -37,73 +37,87 @@ export default function KEDBLibrary() {
     } catch { /* ignore */ }
   };
 
+  const input =
+    'w-full rounded-md border border-line bg-void p-2 text-xs text-ink focus:border-accent/50 focus:outline-none focus:ring-1 focus:ring-accent/30';
+
   return (
-    <div className="p-6 space-y-6 max-w-6xl mx-auto w-full">
-      <div className="flex items-center justify-between">
+    <div className="w-full max-w-6xl mx-auto space-y-6 p-6">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h2 className="text-lg font-bold text-slate-900">KEDB Library</h2>
-          <p className="text-xs text-slate-500 mt-1">Known Error Database — {state.kbArticles.length} articles</p>
+          <p className="font-head text-xs font-semibold uppercase tracking-[0.24em] text-accent">
+            known error database
+          </p>
+          <h2 className="mt-1 font-display text-2xl uppercase tracking-tight">KEDB library</h2>
+          <p className="mt-1 text-xs text-ink-soft">{state.kbArticles.length} known-error articles powering the triage</p>
         </div>
         <button
           onClick={() => setIsAdding(true)}
-          className="bg-slate-900 hover:bg-slate-800 text-white text-xs px-3 py-2 rounded-lg flex items-center gap-1.5 font-medium shadow transition-all duration-200 hover:-translate-y-0.5 active:scale-95"
+          className="flex items-center gap-1.5 rounded-lg bg-accent px-3 py-2 text-xs font-medium text-void shadow-[0_0_18px_-6px_rgba(255,138,61,0.9)] transition-all duration-200 hover:-translate-y-0.5 hover:brightness-110 active:scale-95"
         >
           <Plus size={14} />Add Article
         </button>
       </div>
 
       <div className="relative max-w-md">
-        <Search className="absolute left-3 top-2.5 text-slate-400" size={14} />
+        <Search className="absolute left-3 top-2.5 text-muted" size={14} />
         <input
           type="text"
           placeholder="Search KEDB..."
           value={searchQuery}
           onChange={e => setSearchQuery(e.target.value)}
-          className="w-full text-xs pl-9 pr-4 py-2 border border-slate-200 rounded-md focus:outline-none focus:ring-1 focus:ring-slate-400"
+          className={input + ' pl-9'}
         />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
         {filtered.map(article => (
-          <div key={article.id} className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-200">
-            <div className="flex items-center justify-between mb-2">
-              <span className="font-mono text-xs font-bold text-slate-500">{article.id}</span>
-              <span className={`text-[9px] px-2 py-0.5 rounded-full border font-medium ${
-                article.category === 'Known Error' ? 'bg-rose-50 text-rose-700 border-rose-200' :
-                article.category === 'Technical' ? 'bg-amber-50 text-amber-700 border-amber-200' :
-                'bg-slate-50 text-slate-600 border-slate-200'
+          <div key={article.id} className="panel p-5 transition-all duration-200 hover:-translate-y-0.5">
+            <div className="mb-2 flex items-center justify-between">
+              <span className="font-mono text-xs font-bold text-accent-soft">{article.id}</span>
+              <span className={`rounded-full border px-2 py-0.5 text-[9px] font-medium ${
+                article.category === 'Known Error' ? 'bg-rose-400/10 text-rose-300 border-rose-400/30' :
+                article.category === 'Technical' ? 'bg-amber-300/10 text-amber-200 border-amber-300/30' :
+                'bg-panel-2 text-ink-soft border-line'
               }`}>{article.category}</span>
             </div>
-            <h3 className="text-sm font-semibold text-slate-900 mb-2">{article.title}</h3>
-            <p className="text-xs text-slate-600 leading-relaxed mb-3">{article.content}</p>
+            <h3 className="mb-2 font-head text-sm font-semibold text-ink">{article.title}</h3>
+            <p className="mb-3 text-xs leading-relaxed text-ink-soft">{article.content}</p>
             {article.steps && article.steps.length > 0 && (
               <div>
-                <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Resolution Steps:</span>
-                <ol className="list-decimal pl-4 text-[11px] text-slate-600 space-y-1 mt-1">
+                <span className="flex items-center gap-1 font-mono text-[10px] font-bold uppercase tracking-wider text-muted">
+                  <Sparkles size={11} className="text-accent" />Resolution Steps:
+                </span>
+                <ol className="mt-1 list-decimal space-y-1 pl-4 text-[11px] text-ink-soft">
                   {article.steps.map((step, i) => <li key={i}>{step}</li>)}
                 </ol>
               </div>
             )}
           </div>
         ))}
+        {filtered.length === 0 && (
+          <div className="panel col-span-full p-10 text-center text-muted">
+            <BookOpen size={28} className="mx-auto mb-3 opacity-60" />
+            <p className="text-xs">No matching articles</p>
+          </div>
+        )}
       </div>
 
       {isAdding && (
-        <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-xl shadow-xl border w-full max-w-lg max-h-[90vh] overflow-y-auto">
-            <div className="bg-slate-900 text-white p-4 flex items-center justify-between">
-              <h3 className="font-bold text-sm flex items-center gap-2"><BookOpen size={16} />New KB Article</h3>
-              <button onClick={() => setIsAdding(false)} className="text-slate-400 hover:text-white"><X size={16} /></button>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-void/70 p-4 backdrop-blur-sm">
+          <div className="accent-edge panel w-full max-w-lg overflow-y-auto max-h-[90vh]">
+            <div className="flex items-center justify-between border-b border-line bg-abyss p-4">
+              <h3 className="flex items-center gap-2 font-head text-sm font-semibold text-ink"><BookOpen size={16} className="text-accent" />New KB Article</h3>
+              <button onClick={() => setIsAdding(false)} className="text-muted transition-colors hover:text-white"><X size={16} /></button>
             </div>
-            <form onSubmit={handleAdd} className="p-5 space-y-4 text-xs">
+            <form onSubmit={handleAdd} className="space-y-4 p-5 text-xs">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-1">
-                  <label className="font-semibold text-slate-700">Article ID</label>
-                  <input type="text" placeholder="KB-XXX" value={newArticle.id} onChange={e => setNewArticle({ ...newArticle, id: e.target.value })} className="w-full p-2 border border-slate-200 rounded focus:ring-1 focus:ring-slate-900" required />
+                  <label className="font-head font-semibold text-ink-soft">Article ID</label>
+                  <input type="text" placeholder="KB-XXX" value={newArticle.id} onChange={e => setNewArticle({ ...newArticle, id: e.target.value })} className={input} required />
                 </div>
                 <div className="space-y-1">
-                  <label className="font-semibold text-slate-700">Category</label>
-                  <select value={newArticle.category} onChange={e => setNewArticle({ ...newArticle, category: e.target.value as any })} className="w-full p-2 border border-slate-200 rounded focus:ring-1 focus:ring-slate-900">
+                  <label className="font-head font-semibold text-ink-soft">Category</label>
+                  <select value={newArticle.category} onChange={e => setNewArticle({ ...newArticle, category: e.target.value as any })} className={input}>
                     <option value="General">General</option>
                     <option value="Technical">Technical</option>
                     <option value="Known Error">Known Error</option>
@@ -111,20 +125,20 @@ export default function KEDBLibrary() {
                 </div>
               </div>
               <div className="space-y-1">
-                <label className="font-semibold text-slate-700">Title</label>
-                <input type="text" value={newArticle.title} onChange={e => setNewArticle({ ...newArticle, title: e.target.value })} className="w-full p-2 border border-slate-200 rounded focus:ring-1 focus:ring-slate-900" required />
+                <label className="font-head font-semibold text-ink-soft">Title</label>
+                <input type="text" value={newArticle.title} onChange={e => setNewArticle({ ...newArticle, title: e.target.value })} className={input} required />
               </div>
               <div className="space-y-1">
-                <label className="font-semibold text-slate-700">Content</label>
-                <textarea rows={4} value={newArticle.content} onChange={e => setNewArticle({ ...newArticle, content: e.target.value })} className="w-full p-2 border border-slate-200 rounded focus:ring-1 focus:ring-slate-900" required />
+                <label className="font-head font-semibold text-ink-soft">Content</label>
+                <textarea rows={4} value={newArticle.content} onChange={e => setNewArticle({ ...newArticle, content: e.target.value })} className={input} required />
               </div>
               <div className="space-y-1">
-                <label className="font-semibold text-slate-700">Steps (one per line)</label>
-                <textarea rows={3} value={newArticle.steps} onChange={e => setNewArticle({ ...newArticle, steps: e.target.value })} className="w-full p-2 border border-slate-200 rounded focus:ring-1 focus:ring-slate-900" />
+                <label className="font-head font-semibold text-ink-soft">Steps (one per line)</label>
+                <textarea rows={3} value={newArticle.steps} onChange={e => setNewArticle({ ...newArticle, steps: e.target.value })} className={input} />
               </div>
               <div className="flex justify-end gap-2 pt-2">
-                <button type="button" onClick={() => setIsAdding(false)} className="px-4 py-2 border border-slate-300 rounded hover:bg-slate-100">Cancel</button>
-                <button type="submit" className="px-4 py-2 bg-slate-900 text-white rounded font-semibold shadow hover:bg-slate-800 transition-colors">Create Article</button>
+                <button type="button" onClick={() => setIsAdding(false)} className="rounded border border-line px-4 py-2 text-ink-soft transition-colors hover:bg-white/5">Cancel</button>
+                <button type="submit" className="rounded bg-accent px-4 py-2 font-head font-semibold text-void shadow-[0_0_18px_-6px_rgba(255,138,61,0.9)] transition-all hover:brightness-110">Create Article</button>
               </div>
             </form>
           </div>

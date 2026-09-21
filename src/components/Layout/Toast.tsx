@@ -11,10 +11,10 @@ export default function Toast() {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 50 }}
-          className="fixed bottom-5 right-5 bg-slate-900 text-white text-xs py-3 px-5 rounded-lg border border-slate-800 shadow-xl flex items-center space-x-2 z-50"
+          className="glass-strong fixed bottom-5 right-5 z-50 flex items-center space-x-2 rounded-lg border border-line px-5 py-3 text-xs font-medium text-ink shadow-[0_0_32px_-8px_rgba(255,138,61,0.6)]"
         >
-          <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-ping shrink-0" />
-          <span className="font-medium">{state.toastMessage}</span>
+          <div className="h-1.5 w-1.5 shrink-0 animate-ping rounded-full bg-accent" />
+          <span>{state.toastMessage}</span>
         </motion.div>
       )}
     </AnimatePresence>
