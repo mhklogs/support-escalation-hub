@@ -65,7 +65,7 @@ export default function Sidebar({ open, onClose }: Props) {
 
   const footer = (
     <div className="border-t border-line p-4">
-      <div className="flex items-center gap-2 font-mono text-[10px]  tracking-[0.2em] text-muted">
+      <div className="flex items-center gap-2 font-mono text-[10px] text-muted">
         <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
         Triage online
       </div>
@@ -82,7 +82,7 @@ export default function Sidebar({ open, onClose }: Props) {
           </span>
           <div className="min-w-0 leading-none">
             <p className="font-display text-sm font-bold tracking-[0.08em] text-ink">SUPPORTOPS</p>
-            <p className="mt-1 font-mono text-[10px]  tracking-[0.24em] text-muted">
+            <p className="mt-1 font-mono text-[10px] text-muted">
               escalation hub
             </p>
           </div>

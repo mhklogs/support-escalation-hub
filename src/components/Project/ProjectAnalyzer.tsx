@@ -243,7 +243,7 @@ export default function ProjectAnalyzer() {
         className="accent-edge relative z-10 flex flex-col items-start justify-between gap-4 overflow-hidden rounded-2xl border border-accent/20 bg-panel/80 p-6 backdrop-blur-xl md:flex-row md:items-center"
       >
         {(isAnalyzing || isFixing) && (
-          <div className="animate-scanline absolute inset-x-0 z-20 h-1 bg-gradient-to-r from-transparent via-accent to-transparent shadow-[0_0_15px_#FF8A3D]" />
+          <div className="animate-scanline absolute inset-x-0 z-20 h-1 bg-gradient-to-r from-transparent via-accent to-transparent" />
         )}
 
         <div className="z-10 space-y-1.5">
@@ -255,7 +255,7 @@ export default function ProjectAnalyzer() {
               Autonomous Repair Engine
             </span>
           </div>
-          <h2 className="flex items-center gap-3 bg-gradient-to-r from-ink via-ink to-muted bg-clip-text text-2xl font-black leading-tight text-transparent">
+          <h2 className="flex items-center gap-3 text-ink text-2xl font-black leading-tight">
             <FolderCode className="shrink-0 text-accent" size={26} />
             {projectName}
           </h2>

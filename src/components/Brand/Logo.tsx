@@ -13,7 +13,7 @@ const S = {
 
 export default function SupportOpsLogo({
   size = 40,
-  color = "#FF8A3D",
+  color = "#b45309",
   ring = true,
   className,
 }: {
@@ -78,7 +78,7 @@ export function SupportOpsBrand({
         <p className="font-display text-sm font-bold tracking-[0.08em] text-ink">
           SUPPORTOPS
         </p>
-        <p className="mt-1 font-mono text-[10px]  tracking-[0.26em] text-muted">
+        <p className="mt-1 font-mono text-[10px] text-muted">
           {subtitle}
         </p>
       </div>

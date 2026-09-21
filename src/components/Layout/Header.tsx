@@ -64,14 +64,14 @@ export default function Header({ onMenu, menuOpen }: Props) {
         </span>
         <div className="leading-none">
           <p className="font-display text-sm font-bold tracking-[0.1em] text-ink">SUPPORTOPS</p>
-          <p className="mt-1 font-mono text-[10px]  tracking-[0.24em] text-muted">
+          <p className="mt-1 font-mono text-[10px] text-muted">
             escalation hub
           </p>
         </div>
       </div>
 
       <div className="flex items-center gap-1.5 overflow-hidden lg:hidden">
-        <SupportOpsLogo size={26} ring={false} color="#FF8A3D" />
+        <SupportOpsLogo size={26} ring={false} color="#b45309" />
       </div>
 
       <div className="ml-auto flex items-center gap-2">

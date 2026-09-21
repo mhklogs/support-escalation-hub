@@ -20,7 +20,7 @@ export default function Inbox() {
   return (
     <div className="w-full max-w-6xl mx-auto space-y-6 p-6">
       <div>
-        <p className="font-head text-xs font-semibold  tracking-[0.24em] text-accent">
+        <p className="font-head text-xs font-semibold text-accent">
           command deck
         </p>
         <h2 className="mt-1 font-display text-2xl  leading-tight">Queue health</h2>
@@ -35,7 +35,7 @@ export default function Inbox() {
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
                   <p className="font-mono text-[11px]  tracking-[0.14em] text-muted">{stat.label}</p>
-                  <p className="font-display text-3xl text-glow-white">{stat.value}</p>
+                  <p className="font-display text-3xl ">{stat.value}</p>
                 </div>
                 <div className={`rounded-lg p-3 ${stat.color}`}>
                   <Icon size={22} />

@@ -271,7 +271,7 @@ export default function SetupScreen() {
         <div className="aurora -top-32 left-1/3 h-80 w-80 bg-accent/15" />
         <div className="text-center">
           <SupportOpsLogo size={52} className="mx-auto animate-pulse-glow" />
-          <p className="mt-6 font-mono text-xs  tracking-[0.24em] text-muted">
+          <p className="mt-6 font-mono text-xs text-muted">
             Checking configuration...
           </p>
         </div>
@@ -289,10 +289,10 @@ export default function SetupScreen() {
           <span className="logo-tile flex h-20 w-20 items-center justify-center rounded-full border-accent/40">
             <Check className="text-accent" size={36} />
           </span>
-          <h2 className="mt-6 font-display text-2xl  leading-tight text-glow-white md:text-3xl">
+          <h2 className="mt-6 font-display">
             All systems go
           </h2>
-          <p className="mt-2 font-mono text-xs  tracking-[0.2em] text-muted">
+          <p className="mt-2 font-mono text-xs text-muted">
             Entering your triage deck...
           </p>
         </div>
@@ -336,7 +336,7 @@ export default function SetupScreen() {
 
             <h1 className="mt-7 font-display text-4xl  leading-[1.05] leading-tight md:text-6xl">
               Every ticket, triaged and answered{" "}
-              <span className="text-glow text-accent">before your agents touch it.</span>
+              <span className="text-accent">before your agents touch it.</span>
             </h1>
 
             <p className="mt-6 max-w-xl text-base leading-relaxed text-ink-soft md:text-lg">
@@ -375,7 +375,7 @@ export default function SetupScreen() {
 
             <a
               href="#how"
-              className="mt-10 inline-flex items-center gap-2 font-mono text-[11px]  tracking-[0.2em] text-muted transition hover:text-accent"
+              className="mt-10 inline-flex items-center gap-2 font-mono text-[11px] text-muted transition hover:text-accent"
             >
               How it works <ChevronDown className="h-4 w-4 animate-bounce" />
             </a>
@@ -384,7 +384,7 @@ export default function SetupScreen() {
           {/* product surface */}
           <div className="accent-edge panel p-5 sm:p-6">
             <div className="flex items-center justify-between border-b border-line pb-3">
-              <span className="flex items-center gap-2 font-mono text-[10px]  tracking-[0.2em] text-muted">
+              <span className="flex items-center gap-2 font-mono text-[10px] text-muted">
                 <Activity size={12} className="text-accent" /> Triage — TCK-9011
               </span>
               <span className="flex items-center gap-1.5 rounded-full border border-emerald-400/25 bg-emerald-400/10 px-2 py-0.5 font-mono text-[9px] text-emerald-300">
@@ -442,10 +442,10 @@ export default function SetupScreen() {
       {/* ===== HOW IT WORKS ===== */}
       <section id="how" className="border-y border-line bg-abyss py-20">
         <div className="mx-auto max-w-6xl px-5 md:px-6">
-          <p className="text-center font-head text-sm font-semibold  tracking-[0.24em] text-accent">
+          <p className="text-center font-head text-sm font-semibold text-accent">
             three steps
           </p>
-          <h2 className="mx-auto mt-2 max-w-2xl text-center font-display text-3xl  leading-tight md:text-4xl">
+          <h2 className="mx-auto mt-2 max-w-2xl text-center font-display">
             From a pasted ticket to a sent reply in minutes
           </h2>
 
@@ -466,11 +466,11 @@ export default function SetupScreen() {
 
       {/* ===== OUTCOMES ===== */}
       <section className="mx-auto max-w-6xl px-5 py-20 md:px-6">
-        <p className="font-head text-sm font-semibold  tracking-[0.24em] text-accent">
+        <p className="font-head text-sm font-semibold text-accent">
           what you get
         </p>
         <div className="mt-2 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <h2 className="font-display text-3xl  leading-tight md:text-5xl">
+          <h2 className="font-display">
             The queue clears itself
           </h2>
           <p className="max-w-xl text-sm leading-relaxed text-ink-soft md:text-base">
@@ -498,10 +498,10 @@ export default function SetupScreen() {
       {/* ===== PRAISE ===== */}
       <section className="border-y border-line bg-abyss py-20">
         <div className="mx-auto max-w-6xl px-5 md:px-6">
-          <p className="text-center font-head text-sm font-semibold  tracking-[0.24em] text-accent-soft">
+          <p className="text-center font-head text-sm font-semibold text-accent-soft">
             reports from the floor
           </p>
-          <h2 className="mx-auto mt-2 max-w-2xl text-center font-display text-3xl  leading-tight md:text-4xl">
+          <h2 className="mx-auto mt-2 max-w-2xl text-center font-display">
             What support leaders do with it
           </h2>
 
@@ -525,10 +525,10 @@ export default function SetupScreen() {
       <section id="launch" className="mx-auto max-w-6xl px-5 py-20 md:px-6">
         <div className="grid items-start gap-10 lg:grid-cols-[1fr_1.1fr]">
           <div className="lg:sticky lg:top-24">
-            <p className="font-head text-sm font-semibold  tracking-[0.24em] text-accent">
+            <p className="font-head text-sm font-semibold text-accent">
               first launch
             </p>
-            <h2 className="mt-2 font-display text-3xl  leading-tight md:text-4xl">
+            <h2 className="mt-2 font-display">
               Connect your workspace, launch your deck
             </h2>
             <p className="mt-4 max-w-md text-sm leading-relaxed text-ink-soft md:text-base">
@@ -685,10 +685,10 @@ export default function SetupScreen() {
 
       {/* ===== FAQ ===== */}
       <section className="mx-auto max-w-3xl px-5 py-20 md:px-6">
-        <p className="text-center font-head text-sm font-semibold  tracking-[0.24em] text-accent-soft">
+        <p className="text-center font-head text-sm font-semibold text-accent-soft">
           straight answers
         </p>
-        <h2 className="mt-2 text-center font-display text-3xl  leading-tight md:text-4xl">
+        <h2 className="mt-2 text-center font-display">
           Before you ask
         </h2>
 
@@ -709,10 +709,10 @@ export default function SetupScreen() {
       <section className="pb-24">
         <div className="accent-edge panel mx-auto max-w-4xl p-8 text-center md:p-12">
           <SupportOpsLogo size={44} className="mx-auto" />
-          <p className="mt-5 font-head text-sm font-semibold  tracking-[0.24em] text-accent">
+          <p className="mt-5 font-head text-sm font-semibold text-accent">
             go triage
           </p>
-          <h2 className="mx-auto mt-3 max-w-2xl font-display text-3xl  leading-tight md:text-5xl">
+          <h2 className="mx-auto mt-3 max-w-2xl font-display">
             Paste a ticket and watch the queue clear
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-ink-soft md:text-base">
@@ -740,7 +740,7 @@ export default function SetupScreen() {
       <footer className="border-t border-line bg-abyss">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 py-8 md:flex-row md:px-6">
           <SupportOpsBrand size={26} subtitle="autonomous escalation hub" />
-          <p className="font-mono text-[10px]  tracking-[0.2em] text-muted">
+          <p className="font-mono text-[10px] text-muted">
             Triage · Diagnose · Reply · Escalate
           </p>
         </div>

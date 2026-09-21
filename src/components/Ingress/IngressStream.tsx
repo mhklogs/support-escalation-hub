@@ -41,7 +41,7 @@ export default function IngressStream() {
   return (
     <div className="w-full max-w-6xl mx-auto space-y-6 p-6">
       <div>
-        <p className="font-head text-xs font-semibold  tracking-[0.24em] text-accent">
+        <p className="font-head text-xs font-semibold text-accent">
           telemetry pipeline
         </p>
         <h2 className="mt-1 font-display text-2xl  leading-tight">Ingress stream</h2>
